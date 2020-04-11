@@ -209,25 +209,25 @@ def index():
     if 'username' in session:
         username = session['username']
         return 'Logged in as ' + username + '<br>' + \
-            "<b><a href = '/logout'>click here to log out</a></b>"
+               "<b><a href = '/logout'>click here to log out</a></b>"
 
     return "You are not logged in <br><a href = '/login'></b>" + \
-        "click here to log in </b></a>"
+           "click here to log in</b></a>"
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-    
-    <form action = "" method = "post">
-        <p><input type = text name = username/></p>
-        <p><input type = submit value = Login/></p>
-    </form>
-    
-    '''
+   if request.method == 'POST':
+       session['username'] = request.form['username']
+       return redirect(url_for("index"))
+   return '''
+
+   <form action = "" method = "post">
+      <p><input type = text name = username></p>
+      <p><input type = submit value = Login></p>
+   </form>
+
+   '''
 
 
 @app.route('/logout')
@@ -237,7 +237,7 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
 ```
 
 ```
@@ -245,6 +245,12 @@ login() 뷰함수에서 /login을 검색할때 GET 메소드를 통해 호출되
 양식이 '/login' 으로 다시 게시되고 이제 세션 변수가 설정된다. 
 응용 프로그램이 '/'로 리다이렉션된다.
 ```
+
+<img src="./session1.PNG">
+
+<img src="./session2.PNG">
+
+<img src="./session3.PNG">
 
 
 
@@ -309,7 +315,5 @@ Flask.abort(code)
 429- 너무 많은 요청
 ```
 
-
-
-
+<img src="./redirect.PNG">
 
